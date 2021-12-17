@@ -16,7 +16,7 @@ export class MoviesComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.movies = this.movieService.getMovies();
-    this.moviesChangeSubscription = this.movieService.moviesChange.subscribe(movies => {
+    this.moviesChangeSubscription = this.movieService.moviesChange.subscribe((movies: Movie[]) => {
       this.movies = movies;
     });
     this.movieService.fetchMovies();

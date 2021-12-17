@@ -38,6 +38,16 @@ export class MovieService {
       });
   }
 
+  getMovie(index: number) {
+    return this.movies[index];
+  }
 
+  deleteMovie(id: string) {
+    this.movies.find(movie => movie.id === id);
+    this.http.delete('https://skosumbaeva2502-default-rtdb.firebaseio.com/movies/' + id + '.json')
+      .subscribe(() => {
+      this.fetchMovies();
+    });
+  }
 
 }
