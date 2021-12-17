@@ -6,7 +6,7 @@ import { map } from 'rxjs/operators';
 
 @Injectable()
 export class MovieService {
-  movies: Movie[] = [];
+  private movies: Movie[] = [];
   moviesFetching = new Subject<boolean>();
   moviesChange = new Subject<Movie[]>();
 
@@ -22,12 +22,19 @@ export class MovieService {
       .pipe(map(result => {
         return Object.keys(result).map(id => {
           const movieData = result[id];
-          return new Movie(movieData.name);
+          return new Movie(id, movieData.name);
         })
       }))
       .subscribe(movies => {
         this.movies = movies;
         this.moviesChange.next(this.movies);
+      });
+  }
+
+  addMovie(movieData: object) {
+    this.http.post('https://skosumbaeva2502-default-rtdb.firebaseio.com/movies.json', movieData)
+      .subscribe(() => {
+        this.fetchMovies();
       });
   }
 
