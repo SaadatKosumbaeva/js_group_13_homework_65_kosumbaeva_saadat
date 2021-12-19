@@ -1,11 +1,17 @@
-<div class="container mt-4">
+<div class="container mt-5">
   <div class="mb-5">
     <form (ngSubmit)="addMovie()">
       <div class="row justify-content-between m-0">
         <div class="form-group col m-0 pl-0">
-          <input type="text" class="form-control p-4" name="movieName" [(ngModel)]="movieName">
+          <input type="text" class="form-control p-4" name="movieName" placeholder="The name of the movie"
+                 [(ngModel)]="movieName">
         </div>
-        <button type="submit" class="btn btn-primary">Add</button>
+        <button type="submit" class="btn btn-primary add-btn" [disabled]="isUploading">
+          <span *ngIf="!isUploading">Add</span>
+          <span class="spinner-border spinner-border-sm" *ngIf="isUploading">
+            <span class="sr-only">Loading...</span>
+          </span>
+        </button>
       </div>
     </form>
   </div>

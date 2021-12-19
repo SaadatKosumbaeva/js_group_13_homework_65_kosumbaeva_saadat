@@ -1,3 +1,9 @@
+<h3 class="mb-4">To watch list:</h3>
 <div class="row flex-column m-0">
-  <app-movie *ngFor="let movie of movies; let i = index" [index]="i" [movie]="movie"></app-movie>
+  <app-movie *ngFor="let movie of movies; let i = index" [movie]="movie"></app-movie>
 </div>
+
+<div class="preloader row justify-content-center align-items-center" *ngIf="isFetching">
+  <div class="spinner-border"></div>
+</div>
+

@@ -1,6 +1,13 @@
-<div class="row justify-content-between ml-0 mr-0 mb-3" *ngIf="movie">
-  <div class="card col p-3 mr-3">
+<div class="row justify-content-between m-0" *ngIf="movie">
+  <div class="card col-11 p-3 mr-3">
     <h5 class="m-0">{{ movie.name }}</h5>
   </div>
-  <button class="btn btn-danger" (click)="deleteMovie()">Delete</button>
+
+  <button class="btn btn-danger" (click)="deleteMovie()" *ngIf="showButtons()">Delete</button>
+
+  <ng-container *ngIf="movieDeleted">
+    <div class="spinner-border text-danger" role="status" *ngIf="movie.id === movieDeleted.id && isDeleting">
+      <span class="sr-only">Loading...</span>
+    </div>
+  </ng-container>
 </div>
